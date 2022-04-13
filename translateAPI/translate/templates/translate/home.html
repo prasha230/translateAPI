@@ -1,0 +1,17 @@
+{% extends 'translate/base.html' %}
+
+{% block content %}
+
+{% if submitted %}
+    {{response}}
+{% else %}
+<form action='' method='POST'>
+    {% csrf_token %}
+    {{form.as_p}}
+    <br>
+    <center>
+    <input type='submit' value='Submit' class='btn btn-secondary'>
+    </center>
+</form>    
+{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'translate/base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <h4 class="card-header">Input</h4>
+        <div class="card-body">
+          <p class="card-text">{{inp}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+          <h4 class="card-header">Translated</h4>
+        <div class="card-body">
+          <p class="card-text">{{response}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% comment %} <h4>
+    <strong>Input : </strong>{{inp}}<br><br>
+    <strong>Translated : </strong>{{response}} 
+</h4> {% endcomment %}
+{% endblock %}
