@@ -3,6 +3,7 @@ from .models import LanguageModel
 from .forms import TranslateForm
 import requests
 from gtts import gTTS
+import gtts
 
 # Create your views here.
 def home(request):
@@ -29,10 +30,18 @@ def home(request):
             #making audio files
             myobj = gTTS(text=inp, lang='en', slow=False)  
             myobj.save('translate/static/inp.mp3')
-            myobj = gTTS(text=response[0]['translations'][0]['text'], lang=lang_code, slow=False)  
-            myobj.save('translate/static/response.mp3')
+            
+            lang_available = [x for x in gtts.lang.tts_langs()];
+            if lang_code in lang_available:
+                myobj = gTTS(text=response[0]['translations'][0]['text'], lang=lang_code, slow=False)
+                myobj.save('translate/static/response.mp3')
+                speech_available=True
+            else:
+                speech_available=False
+            
+            
 
-            return render(request, 'translate/result.html', {'inp': inp, 'response': response[0]['translations'][0]['text'],'sl':sl})
+            return render(request, 'translate/result.html', {'inp': inp, 'response': response[0]['translations'][0]['text'],'sl':sl,'speech_available':speech_available})
     else:
         form = TranslateForm
         if 'submitted' in request.GET:

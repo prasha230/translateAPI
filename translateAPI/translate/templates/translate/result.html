@@ -13,9 +13,7 @@
         <h4 class="card-header">
           Input <span class="h6">(English)</span>
           <button class="" onclick="playMusic('static/inp.mp3')" style="border:none; background:none;">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" width=18px style="padding-bottom:3px;" >
-              <path fillRule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" clipRule="evenodd" />
-            </svg>
+            <img src="https://img.icons8.com/ios-filled/50/000000/room-sound.png" width=18px style="padding-bottom:3px;"/>
           </button>
         </h4>
         <div class="card-body">
@@ -31,11 +29,11 @@
         
           <h4 class="card-header">
             Translated <span class="h6">({{sl}})</span>
+            {% if speech_available %}
             <button class="" onclick="playMusic('static/response.mp3')" style="border:none; background:none;">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" width=20px style="padding-bottom:3px;">
-                <path fillRule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" clipRule="evenodd" />
-              </svg>
+              <img src="https://img.icons8.com/ios-filled/50/000000/room-sound.png" width=18px style="padding-bottom:3px;"/>
             </button>
+            {% endif %}
           </h4>
 
         <div class="card-body">
@@ -46,5 +44,5 @@
   </div>
   <br><br>
   
-  <a href="{%url 'home'%}" class="btn btn-secondary">Back</a>
+  <a href="{%url 'home'%}" class="btn btn-secondary">Home</a>
 {% endblock %}
