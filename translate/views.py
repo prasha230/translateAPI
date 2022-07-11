@@ -30,15 +30,11 @@ def home(request):
             
             #making audio files
             myobj = gTTS(text=inp, lang='en', slow=False)
-            os.remove('translate/static/inp.mp3')
-            time.sleep(2.0)
             myobj.save('translate/static/inp.mp3')
             
             langs_available = [x for x in gtts.tts.tts_langs()];
             if lang_code in langs_available and lang_code not in ['hy','mk','cy']:
                 myobj = gTTS(text=response[0]['translations'][0]['text'], lang=lang_code, slow=False)
-                os.remove('translate/static/response.mp3')
-                time.sleep(2.0)
                 myobj.save('translate/static/response.mp3')
                 speech_available=True
             else:
