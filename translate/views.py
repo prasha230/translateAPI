@@ -6,8 +6,14 @@ from gtts import gTTS
 import gtts
 import os
 import time
+import tempfile
+
 # Create your views here.
 def home(request):
+    if os.path.exists('translate/static/inp.mp3'):
+        os.remove('translate/static/inp.mp3')
+    if os.path.exists('translate/static/response.mp3'):
+        os.remove('translate/static/response.mp3')
     submitted = False
     if request.method == 'POST':
         form = TranslateForm(request.POST)
