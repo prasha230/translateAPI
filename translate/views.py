@@ -1,13 +1,10 @@
-from tkinter.tix import Tree
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from .models import LanguageModel
 from .forms import TranslateForm
 import requests
 from gtts import gTTS
 import gtts
 import os
-import time
-import tempfile
 
 # Create your views here.
 def home(request):
