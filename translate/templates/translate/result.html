@@ -11,10 +11,12 @@
     <div class="col-sm-6" style="margin-bottom:20px;">
       <div class="card">
         <h4 class="card-header">
-          Input <span class="h6">(English)</span>
+          Input <span class="h6">({{inp_l}})</span>
+          {% if inp_speech_available%}
           <button class="" onclick="playMusic('static/inp.mp3')" style="border:none; background:none;">
             <img src="https://img.icons8.com/ios-filled/50/000000/room-sound.png" width=18px style="padding-bottom:3px;"/>
           </button>
+          {%endif%}
         </h4>
         <div class="card-body">
           <table>
@@ -29,7 +31,7 @@
         
           <h4 class="card-header">
             Translated <span class="h6">({{sl}})</span>
-            {% if speech_available %}
+            {% if resp_speech_available %}
             <button class="" onclick="playMusic('static/response.mp3')" style="border:none; background:none;">
               <img src="https://img.icons8.com/ios-filled/50/000000/room-sound.png" width=18px style="padding-bottom:3px;"/>
             </button>

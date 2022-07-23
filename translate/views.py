@@ -1,3 +1,4 @@
+from tkinter.tix import Tree
 from django.shortcuts import redirect, render
 from .models import LanguageModel
 from .forms import TranslateForm
@@ -33,22 +34,28 @@ def home(request):
                 "X-RapidAPI-Key": "0a13a46b22mshff6228808313caep1db3e6jsndf0028c96919"
             }
             response = requests.request("POST", url, json=payload, headers=headers, params=querystring).json()
-            
             #making audio files
-            myobj = gTTS(text=inp, lang='en', slow=False)
-            myobj.save('translate/static/inp.mp3')
+            langs_available = [x for x in gtts.tts.tts_langs()]
+
+            inp_lang_code=response[0]['detectedLanguage']['language']
+            inp_l=LanguageModel.objects.get(Code=inp_lang_code)
+            if inp_lang_code in langs_available and inp_lang_code not in ['hy','mk','cy']:
+                myobj = gTTS(text=inp, lang=inp_lang_code, slow=False)
+                myobj.save('translate/static/inp.mp3')
+                inp_speech_available=True
+            else:
+                inp_speech_available=False
             
-            langs_available = [x for x in gtts.tts.tts_langs()];
             if lang_code in langs_available and lang_code not in ['hy','mk','cy']:
                 myobj = gTTS(text=response[0]['translations'][0]['text'], lang=lang_code, slow=False)
                 myobj.save('translate/static/response.mp3')
-                speech_available=True
+                resp_speech_available=True
             else:
-                speech_available=False
+                resp_speech_available=False
             
             
 
-            return render(request, 'translate/result.html', {'inp': inp, 'response': response[0]['translations'][0]['text'],'sl':sl,'speech_available':speech_available})
+            return render(request, 'translate/result.html', {'inp': inp,'inp_l':inp_l, 'response': response[0]['translations'][0]['text'],'sl':sl,'resp_speech_available':resp_speech_available,'inp_speech_available':inp_speech_available})
     else:
         form = TranslateForm
         if 'submitted' in request.GET:
