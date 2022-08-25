@@ -31,6 +31,7 @@ def home(request):
                 "X-RapidAPI-Key": "0a13a46b22mshff6228808313caep1db3e6jsndf0028c96919"
             }
             response = requests.request("POST", url, json=payload, headers=headers, params=querystring).json()
+            print(response)
             #making audio files
             langs_available = [x for x in gtts.tts.tts_langs()]
 
