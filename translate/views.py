@@ -4,14 +4,9 @@ from .forms import TranslateForm
 import requests
 from gtts import gTTS
 import gtts
-import os
 
 # Create your views here.
 def home(request):
-    if os.path.exists('translate/static/inp.mp3'):
-        os.remove('translate/static/inp.mp3')
-    if os.path.exists('translate/static/response.mp3'):
-        os.remove('translate/static/response.mp3')
     submitted = False
     if request.method == 'POST':
         form = TranslateForm(request.POST)
@@ -31,7 +26,6 @@ def home(request):
                 "X-RapidAPI-Key": "0a13a46b22mshff6228808313caep1db3e6jsndf0028c96919"
             }
             response = requests.request("POST", url, json=payload, headers=headers, params=querystring).json()
-            print(response)
             #making audio files
             langs_available = [x for x in gtts.tts.tts_langs()]
 
