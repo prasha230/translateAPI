@@ -4,13 +4,13 @@ from .forms import TranslateForm
 import requests
 from gtts import gTTS
 import gtts
-from django.core.cache import cache
+from django.views.decorators.cache import never_cache
 
 # Create your views here.
+@never_cache
 def home(request):
     submitted = False
     if request.method == 'POST':
-        cache.clear()
         form = TranslateForm(request.POST)
         if form.is_valid():
             inp = form.cleaned_data['inp_text']
