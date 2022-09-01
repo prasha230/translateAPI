@@ -4,8 +4,10 @@ from .forms import TranslateForm
 import requests
 from gtts import gTTS
 import gtts
+from django.views.decorators.cache import cache_control
 
 # Create your views here.
+@cache_control(max_age=0, no_cache=True, no_store=True, must_revalidate=True)
 def home(request):
     submitted = False
     if request.method == 'POST':
