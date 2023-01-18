@@ -1,7 +1,5 @@
 # translateAPI
 
-Link : https://translate-msapi.herokuapp.com/
-
 Landing Page : 
 ![1](https://user-images.githubusercontent.com/18108343/180650044-3dcef1d9-7428-49aa-a5f1-60348db14074.jpg)
 
